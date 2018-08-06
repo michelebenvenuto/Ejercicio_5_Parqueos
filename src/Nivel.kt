@@ -3,11 +3,46 @@ class Nivel(
         val Name: String,
         val Indicator: String,
         val Color: String,
+        var Width: Int=0,
+        var Height: Int=0,
         val MapLocation: String,
         val Users: ArrayList<Users> = ArrayList(),
-        val ParkingSpots: ArrayList<ParkingSpot> = ArrayList()
+        val ParkingSpots: ArrayList<ParkingSpot> = ArrayList(),
+        val Walls: ArrayList<Wall> = ArrayList()
 
 ){
+    fun getWallAt(X: Int,Y: Int):Wall?{
+        for(wall in Walls){
+            if (wall.X==X && wall.Y== Y){
+                return wall
+            }
+        }
+        return null
+    }
+    fun hasWallAt(X: Int, Y:Int): Boolean{
+        for(wall in Walls){
+            if(wall.X==X && wall.Y== Y){
+                return true
+            }
+        }
+        return false
+    }
+    fun getParkingSpotAt(X: Int,Y: Int):ParkingSpot?{
+        for(ParkingSpot in ParkingSpots){
+            if (ParkingSpot.X==X && ParkingSpot.Y== Y){
+                return ParkingSpot
+            }
+        }
+        return null
+    }
+    fun hasParkingSpotAt(X: Int, Y:Int): Boolean{
+        for(ParkingSpot in ParkingSpots){
+            if(ParkingSpot.X==X && ParkingSpot.Y== Y){
+                return true
+            }
+        }
+        return false
+    }
     fun findUser(licensePlate: String): Users?{
         val filteredUser = Users.filter { it.licensePlate == licensePlate}
         if (filteredUser.count()> 0){
@@ -37,31 +72,53 @@ class Nivel(
         return false
     }
     //preguntar si este metodo esta bien aqui
-    fun mapLayout(readMap: ArrayList<String>):String{
-        var finalString=""
-        for(row in readMap.indices){
-            for (column in readMap.get(0).indices){
-               var toEvaluate=readMap.get(row)[column].toString()
-                if (toEvaluate==" "){
-                    finalString+=" "
-                }
-                else if (toEvaluate=="*"){
-                    finalString+="*"
-                }
-                else if (toEvaluate.toIntOrNull()!= null){
-                    var newParkingSpot = ParkingSpot(Name=toEvaluate)
+    fun createMap(readMap: ArrayList<String>): Boolean {
+        var succes=true
+        var verifyingString= ArrayList<String>()
+        this.Height = readMap.size
+        this.Width = readMap.get(0).length
+        for (row in readMap.indices) {
+            for (column in readMap.get(0).indices) {
+                var toEvaluate = readMap.get(row)[column].toString()
+                if (toEvaluate == " ") {
+                } else if (toEvaluate == "*") {
+                    var newWall = Wall(column, row)
+                    Walls.add(newWall)
+
+                } else if (toEvaluate.toIntOrNull() != null) {
+                    var newParkingSpot = ParkingSpot(Name = toEvaluate, X = column, Y = row)
                     ParkingSpots.add(newParkingSpot)
-                    finalString+=newParkingSpot
-                }
-                else{
-                    var anotherParkingSpot = ParkingSpot(Name = toEvaluate)
+                    verifyingString.add(toEvaluate)
+                } else {
+                    var anotherParkingSpot = ParkingSpot(Name = toEvaluate, X = column, Y = row)
                     ParkingSpots.add(anotherParkingSpot)
-                    finalString+=anotherParkingSpot
+                    verifyingString.add(toEvaluate)
                 }
             }
-            finalString+="\n"
+            if (verifyingString.distinct().size< verifyingString.size){
+                succes=false
+            }
         }
-        return finalString
+        return succes
+    }
+    fun mapString():String{
+        var stringToReturn=""
+        for(row in 0..Height){
+            for (Column in 0..Width){
+                if(hasParkingSpotAt(Column,row)){
+                    var parkingSpot= getParkingSpotAt(Column,row)
+                    stringToReturn+=parkingSpot
+                }
+                else if (hasWallAt(Column,row)){
+                    var wall= getWallAt(Column,row)
+                    stringToReturn+=wall
+                }
+                else{
+                    stringToReturn+=" "
+                }
+            }
+        }
+        return stringToReturn
     }
 
     override fun toString(): String {

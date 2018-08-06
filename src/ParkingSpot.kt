@@ -1,5 +1,7 @@
 class ParkingSpot(
     val Name: String,
+    var X: Int,
+    var Y:Int,
     var isOccupied: Boolean= false
 ){
     fun occupy(){
