@@ -1,3 +1,5 @@
+import javafx.scene.control.ProgressIndicator
+
 class Parqueo(
         val Niveles: ArrayList<Nivel> = ArrayList()
 ){
@@ -27,14 +29,26 @@ class Parqueo(
             Niveles.add(nivel)
             return true
         }
-        return true
+        return false
     }
-    fun removeNivel(nivel: Nivel): Boolean{
-        if ( findNivelbyIndicator(nivel.Indicator)!= null ){
-            Niveles.remove(nivel)
+    fun removeNivel(nivelIndicator: String): Boolean{
+        var nivelToRemove= this.findNivelbyIndicator(nivelIndicator)
+        if (nivelToRemove!= null){
+            Niveles.remove(nivelToRemove)
             return true
         }
-        return true
+        return false
+    }
+    fun getNivelWithSpace(): ArrayList<Nivel>{
+        var nivelesWithSpace= ArrayList<Nivel>()
+        for (Nivel in Niveles){
+            for (ParkingSpot in Nivel.ParkingSpots){
+                if(!ParkingSpot.isOccupied){
+                    nivelesWithSpace.add(Nivel)
+                }
+            }
+        }
+        return nivelesWithSpace
     }
 
 

@@ -1,10 +1,9 @@
+
 class Nivel(
         val Name: String,
         val Indicator: String,
         val Color: String,
         val MapLocation: String,
-        val Height: Int,
-        val Width: Int,
         val Users: ArrayList<Users> = ArrayList(),
         val ParkingSpots: ArrayList<ParkingSpot> = ArrayList()
 
@@ -23,21 +22,41 @@ class Nivel(
         }
         return false
     }
-    fun showLocation(user: Users):String?{
-        if (findUser(user.licensePlate)!= null){
-            return user.currentNivel.toString()
+    fun findParkingSpot(Name: String): ParkingSpot?{
+        val filteredSpot = ParkingSpots.filter { it.Name == Name}
+        if (filteredSpot.count()> 0){
+            return filteredSpot[0]
         }
         return null
     }
-    //preguntar si este metodo esta bien en esto
+    fun addParkingSpot(parkingSpot: ParkingSpot):Boolean{
+        if(findUser(parkingSpot.Name)==null){
+            ParkingSpots.add(parkingSpot)
+            return true
+        }
+        return false
+    }
+    //preguntar si este metodo esta bien aqui
     fun mapLayout(readMap: ArrayList<String>):String{
         var finalString=""
         for(row in readMap.indices){
             for (column in readMap.get(0).indices){
                var toEvaluate=readMap.get(row)[column].toString()
-                when(toEvaluate){
-                    " "->finalString+=" "
-                    "*"->finalString+="*"
+                if (toEvaluate==" "){
+                    finalString+=" "
+                }
+                else if (toEvaluate=="*"){
+                    finalString+="*"
+                }
+                else if (toEvaluate.toIntOrNull()!= null){
+                    var newParkingSpot = ParkingSpot(Name=toEvaluate)
+                    ParkingSpots.add(newParkingSpot)
+                    finalString+=newParkingSpot
+                }
+                else{
+                    var anotherParkingSpot = ParkingSpot(Name = toEvaluate)
+                    ParkingSpots.add(anotherParkingSpot)
+                    finalString+=anotherParkingSpot
                 }
             }
             finalString+="\n"
@@ -47,9 +66,10 @@ class Nivel(
 
     override fun toString(): String {
         return """
-            Name: $Name
-            Indicator: $Indicator
-            Color : $Color
-            """.trimIndent()
+            -Nivel:
+                Name: $Name
+                Indicator: $Indicator
+                Color : $Color
+                """.trimIndent()
     }
 }

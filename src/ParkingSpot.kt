@@ -1,6 +1,4 @@
 class ParkingSpot(
-    val X: Int,
-    val Y: Int,
     val Name: String,
     var isOccupied: Boolean= false
 ){
