@@ -11,12 +11,12 @@ fun main(args: Array<String>){
             1)Crear un nivel
             2)Eliminar nivel
             3)Ver todos los niveles
-            4)Salir
+            4)Salir (Regresa a menu principal)
         """.trimIndent()
     val menu3="""
         Menu:
             1)Ingresar Placa
-            2)Salir
+            2)Salir (Regresa a menu principal)
         """.trimIndent()
     var wantsToContinue= true
     val myParqueo= Parqueo()
@@ -47,10 +47,16 @@ fun main(args: Array<String>){
                     var color= readLine()!!
                     print("Archivo de estructura:")
                     var archivo= readLine()!!
-                    if (myParqueo.findNivelbyName(nombre)==null || myParqueo.findNivelbyIndicator(identificador)==null || myParqueo.findNivelbyColor(color)==null){
+                    if (myParqueo.findNivelbyName(nombre)!=null || myParqueo.findNivelbyIndicator(identificador)!=null || myParqueo.findNivelbyColor(color)!=null){
                         println("Ya existe un nivel con ese nombre, identficador, o color")
-                    }else{
-                        var newNivel= Nivel(nombre,identificador,color,MapLocation = archivo)
+                    }
+                    var newNivel= Nivel(nombre,identificador,color,MapLocation = archivo)
+                    if(!newNivel.createMap(newNivel.getMapFromLocation(archivo))){
+                        println(newNivel)
+                        println(newNivel.mapString())
+                        println("Este Mapa tiene parqueos con identificadores iguales, No se puede crear")
+                    }
+                    else{
                         myParqueo.addNivel(newNivel)
                         println("El nivel se ha agregado con exito")
                     }
@@ -71,8 +77,15 @@ fun main(args: Array<String>){
                         println(nivel.mapString())
                     }
                 }
-                4->wantsToContinue=false
+                4->menuToDisplay=0
+                else-> println("Esta opcion no esta en el menu")
             }
+        }
+        if (menuToDisplay==2){
+            println(menu3)
+            println("Escoga una de las opciones del menu:")
+            var opcion = readLine()!!.toIntOrNull()
+
         }
     }while (wantsToContinue)
 }

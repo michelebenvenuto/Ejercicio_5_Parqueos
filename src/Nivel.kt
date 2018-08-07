@@ -1,3 +1,5 @@
+import java.io.File
+import java.io.InputStream
 
 class Nivel(
         val Name: String,
@@ -80,16 +82,14 @@ class Nivel(
         for (row in readMap.indices) {
             for (column in readMap.get(0).indices) {
                 var toEvaluate = readMap.get(row)[column].toString()
-                if (toEvaluate == " ") {
-                } else if (toEvaluate == "*") {
+                if (toEvaluate == "*") {
                     var newWall = Wall(column, row)
                     Walls.add(newWall)
-
                 } else if (toEvaluate.toIntOrNull() != null) {
                     var newParkingSpot = ParkingSpot(Name = toEvaluate, X = column, Y = row)
                     ParkingSpots.add(newParkingSpot)
                     verifyingString.add(toEvaluate)
-                } else {
+                } else if(toEvaluate!=" "){
                     var anotherParkingSpot = ParkingSpot(Name = toEvaluate, X = column, Y = row)
                     ParkingSpots.add(anotherParkingSpot)
                     verifyingString.add(toEvaluate)
@@ -100,6 +100,14 @@ class Nivel(
             }
         }
         return succes
+    }
+    fun getMapFromLocation(location:String):ArrayList<String>{
+        var mapArray= ArrayList<String>()
+        val inputStream: InputStream = File(location).inputStream()
+        val lineList= mutableListOf<String>()
+        inputStream.bufferedReader().useLines { lines-> lines.forEach { lineList.add(it) } }
+        lineList.forEach{mapArray.add(it)}
+        return mapArray
     }
     fun mapString():String{
         var stringToReturn=""
@@ -117,13 +125,14 @@ class Nivel(
                     stringToReturn+=" "
                 }
             }
+            stringToReturn+="\n"
         }
         return stringToReturn
     }
 
     override fun toString(): String {
         return """
-            -Nivel:
+            Nivel:
                 Name: $Name
                 Indicator: $Indicator
                 Color : $Color
