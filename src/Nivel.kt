@@ -66,13 +66,6 @@ class Nivel(
         }
         return null
     }
-    fun addParkingSpot(parkingSpot: ParkingSpot):Boolean{
-        if(findUser(parkingSpot.Name)==null){
-            ParkingSpots.add(parkingSpot)
-            return true
-        }
-        return false
-    }
     //preguntar si este metodo esta bien aqui
     fun createMap(readMap: ArrayList<String>): Boolean {
         var succes=true

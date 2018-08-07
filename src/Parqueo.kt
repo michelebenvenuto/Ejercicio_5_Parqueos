@@ -24,6 +24,15 @@ class Parqueo(
         }
         return null
     }
+    fun findNivelThatContainsAUser(licensPLate:String):Nivel?{
+        for (nivel in Niveles){
+            if(nivel.findUser(licensPLate)!=null){
+                return nivel
+            }
+        }
+        return null
+    }
+
     fun addNivel(nivel: Nivel): Boolean{
         if ( findNivelbyIndicator(nivel.Indicator)== null && findNivelbyName(nivel.Name)== null && findNivelbyColor(nivel.Color)== null ){
             Niveles.add(nivel)
@@ -42,14 +51,14 @@ class Parqueo(
     fun getNivelWithSpace(): ArrayList<Nivel>{
         var nivelesWithSpace= ArrayList<Nivel>()
         for (Nivel in Niveles){
+            var hasSpace= false
             for (ParkingSpot in Nivel.ParkingSpots){
                 if(!ParkingSpot.isOccupied){
-                    nivelesWithSpace.add(Nivel)
+                    hasSpace=true
                 }
             }
+            nivelesWithSpace.add(Nivel)
         }
         return nivelesWithSpace
     }
-
-
 }

@@ -1,5 +1,3 @@
 class Users(
-        val licensePlate: String,
-        val currentNivel: Nivel
-
+        val licensePlate: String
 )

@@ -23,14 +23,13 @@ fun main(args: Array<String>){
     do {
         if (menuToDisplay==0){
             println(menu1)
-            print("Escoja una opcion del menu:")
+            print("Escoja una opcion del menu: ")
             var opcion= readLine()!!.toIntOrNull()
             when(opcion){
                 1-> menuToDisplay=1
                 2->menuToDisplay=2
                 3->wantsToContinue=false
-                else-> println("Esta opcion no es parte del menu")
-            }
+                else-> println("Esta opcion no es parte del menu") }
         }
         if (menuToDisplay==1){
             println(menu2)
@@ -38,22 +37,20 @@ fun main(args: Array<String>){
             var opcion= readLine()!!.toIntOrNull()
             when(opcion){
                 1->{
-                    println("Ingrese los siguientes daots del nivel:")
-                    print("Nombre:")
+                    println("Ingrese los siguientes daots del nivel: ")
+                    print("Nombre: ")
                     var nombre= readLine()!!
-                    print("Identificador:")
+                    print("Identificador: ")
                     var identificador= readLine()!!
                     print("Color:")
                     var color= readLine()!!
-                    print("Archivo de estructura:")
+                    print("Archivo de estructura: ")
                     var archivo= readLine()!!
                     if (myParqueo.findNivelbyName(nombre)!=null || myParqueo.findNivelbyIndicator(identificador)!=null || myParqueo.findNivelbyColor(color)!=null){
                         println("Ya existe un nivel con ese nombre, identficador, o color")
                     }
                     var newNivel= Nivel(nombre,identificador,color,MapLocation = archivo)
                     if(!newNivel.createMap(newNivel.getMapFromLocation(archivo))){
-                        println(newNivel)
-                        println(newNivel.mapString())
                         println("Este Mapa tiene parqueos con identificadores iguales, No se puede crear")
                     }
                     else{
@@ -62,30 +59,62 @@ fun main(args: Array<String>){
                     }
                 }
                 2->{
-                    print("Ingrese el identificador del nivel que desea quitar:")
+                    print("Ingrese el identificador del nivel que desea quitar: ")
                     var toRemove= readLine()!!
                     if (myParqueo.findNivelbyIndicator(toRemove)==null){
                         println("No existe un nivel con ese identificador")
                     }else{
                         myParqueo.removeNivel(toRemove)
-                        println("Se ha removido el nivel con identificador $toRemove con exito")
-                    }
+                        println("Se ha removido el nivel con identificador $toRemove con exito") }
                 }
                 3->{
+                    if(myParqueo.Niveles.size==0){
+                        println("El parqueo no tiene niveles")
+                    }else{
                     for (nivel in myParqueo.Niveles){
                         println(nivel)
-                        println(nivel.mapString())
-                    }
+                        println(nivel.mapString()) }}
                 }
                 4->menuToDisplay=0
-                else-> println("Esta opcion no esta en el menu")
-            }
+                else-> println("Esta opcion no esta en el menu") }
         }
         if (menuToDisplay==2){
             println(menu3)
             println("Escoga una de las opciones del menu:")
             var opcion = readLine()!!.toIntOrNull()
-
+            when(opcion){
+                1->{
+                    print("Ingrese la placa de su vehículo: ")
+                    var placa= readLine()!!
+                    var NivelWithSpace=myParqueo.getNivelWithSpace()
+                    if (myParqueo.findNivelThatContainsAUser(placa)!=null){
+                        println(myParqueo.findNivelThatContainsAUser(placa))
+                        println(myParqueo.findNivelThatContainsAUser(placa)!!.mapString())
+                    }else{
+                        for (nivel in NivelWithSpace){
+                            println(nivel)
+                        }
+                        print("Escriba el indicador del nivel que quiera escoger: ")
+                        var indicador= readLine()!!
+                        var nivelToShow= myParqueo.findNivelbyIndicator(indicador)
+                        if (nivelToShow==null){
+                            println("El nivel con indicador $indicador no se puede escoger (no existe o esta lleno")
+                        }else{
+                            println(nivelToShow.mapString())
+                            print("Escoga el parqueo que quiera escoger: ")
+                            var pickedParkingSpot= readLine()!!
+                            if (nivelToShow.findParkingSpot(pickedParkingSpot)==null){
+                                println("Un parqueo con ese nombre no existe")
+                            }else{
+                                nivelToShow.addUser(Users(placa))
+                                nivelToShow.findParkingSpot(pickedParkingSpot)!!.occupy()
+                                println("El parqueo $pickedParkingSpot se ha ocupado")
+                            }
+                        }
+                    }
+                }
+                2-> menuToDisplay=0
+            }
         }
     }while (wantsToContinue)
 }
