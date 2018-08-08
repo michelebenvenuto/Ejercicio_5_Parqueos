@@ -66,7 +66,6 @@ class Nivel(
         }
         return null
     }
-    //preguntar si este metodo esta bien aqui
     fun createMap(readMap: ArrayList<String>): Boolean {
         var succes=true
         var verifyingString= ArrayList<String>()

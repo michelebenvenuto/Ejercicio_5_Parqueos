@@ -2,15 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8b92a8f6-57db-4c41-9622-3bd3e4c3cbf6" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Ejercicio_5_Parqueos/MainKt.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Ejercicio_5_Parqueos/MainKt.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Ejercicio_5_Parqueos/Nivel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Ejercicio_5_Parqueos/Nivel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Ejercicio_5_Parqueos/Parqueo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Ejercicio_5_Parqueos/Parqueo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Ejercicio_5_Parqueos/Users.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Ejercicio_5_Parqueos/Users.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Nivel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/Nivel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Parqueo.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/Parqueo.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Users.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/Users.kt" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -31,11 +23,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Nivel.kt" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Nivel.kt" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Nivel.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-751">
-              <caret line="73" column="42" selection-start-line="73" selection-start-column="36" selection-end-line="73" selection-end-column="42" />
+            <state relative-caret-position="796">
+              <caret line="67" column="5" selection-start-line="67" selection-start-column="5" selection-end-line="67" selection-end-column="5" />
               <folding>
                 <element signature="e#0#46#0" expanded="true" />
               </folding>
@@ -70,11 +62,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Main.kt" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Main.kt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Main.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-833">
-              <caret line="55" column="14" selection-start-line="55" selection-start-column="14" selection-end-line="55" selection-end-column="14" />
+            <state relative-caret-position="799">
+              <caret line="97" selection-start-line="97" selection-end-line="97" />
             </state>
           </provider>
         </entry>
@@ -98,14 +90,13 @@
         <option value="$PROJECT_DIR$/src/Wall.kt" />
         <option value="$PROJECT_DIR$/src/Users.kt" />
         <option value="$PROJECT_DIR$/src/Parqueo.kt" />
-        <option value="$PROJECT_DIR$/src/Nivel.kt" />
         <option value="$PROJECT_DIR$/src/Main.kt" />
+        <option value="$PROJECT_DIR$/src/Nivel.kt" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="445" />
-    <option name="y" value="-9" />
+    <option name="x" value="676" />
     <option name="width" value="697" />
     <option name="height" value="735" />
   </component>
@@ -499,17 +490,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ParkingSpot.kt">
+    <entry file="file://$PROJECT_DIR$/src/Main.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="1" selection-start-line="18" selection-start-column="1" selection-end-line="18" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Wall.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="11" selection-start-column="11" selection-end-column="11" />
+        <state relative-caret-position="799">
+          <caret line="97" selection-start-line="97" selection-end-line="97" />
         </state>
       </provider>
     </entry>
@@ -520,20 +504,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Nivel.kt">
+    <entry file="file://$PROJECT_DIR$/src/Wall.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-751">
-          <caret line="73" column="42" selection-start-line="73" selection-start-column="36" selection-end-line="73" selection-end-column="42" />
-          <folding>
-            <element signature="e#0#46#0" expanded="true" />
-          </folding>
+        <state>
+          <caret column="11" selection-start-column="11" selection-end-column="11" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main.kt">
+    <entry file="file://$PROJECT_DIR$/src/ParkingSpot.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-833">
-          <caret line="55" column="14" selection-start-line="55" selection-start-column="14" selection-end-line="55" selection-end-column="14" />
+        <state relative-caret-position="306">
+          <caret line="18" column="1" selection-start-line="18" selection-start-column="1" selection-end-line="18" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Nivel.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="796">
+          <caret line="67" column="5" selection-start-line="67" selection-start-column="5" selection-end-line="67" selection-end-column="5" />
+          <folding>
+            <element signature="e#0#46#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
